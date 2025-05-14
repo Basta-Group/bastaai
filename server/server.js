@@ -38,7 +38,6 @@ app.post('/send-email', async (req, res) => {
     if (!email) {
       throw new Error('Recipient email is required');
     }
-
     const msg = {
       to: email, // Dynamic recipient email from form data
       from: 'contact@nglcert.com', // This must be a verified sender
@@ -51,15 +50,30 @@ app.post('/send-email', async (req, res) => {
         Number of Games: ${numberOfGames}
       `,
       html: `
-        <h3>New Waitlist Registration</h3>
-        <p><strong>Company Name:</strong> ${companyName}</p>
-        <p><strong>Full Name:</strong> ${fullName}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Game Type:</strong> ${gameType}</p>
-        <p><strong>Number of Games:</strong> ${numberOfGames}</p>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            h3 { color: #2c3e50; }
+            p { margin: 10px 0; }
+            .label { font-weight: bold; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <h3>New Waitlist Registration</h3>
+            <p><span class="label">Company Name:</span> ${companyName}</p>
+            <p><span class="label">Full Name:</span> ${fullName}</p>
+            <p><span class="label">Email:</span> ${email}</p>
+            <p><span class="label">Game Type:</span> ${gameType}</p>
+            <p><span class="label">Number of Games:</span> ${numberOfGames}</p>
+          </div>
+        </body>
+        </html>
       `,
     };
-
     console.log('Sending email with SendGrid to:', email);
     await sgMail.send(msg);
     console.log('Email sent successfully');

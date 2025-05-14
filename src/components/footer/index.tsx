@@ -82,7 +82,15 @@ export default function Footer() {
           {/* Bottom Section with Copyright and Social Media */}
           <div className="flex flex-col md:flex-row md:justify-between md:items-center  pt-6">
             <p className="text-sm text-black mb-4 md:mb-0">
-              <span className="opacity-60">Copyright © 2025 NGLCert.com</span>
+              <a
+                href="https://nglcert.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="opacity-60 hover:underline">
+                  Copyright © 2025 nglcert.com
+                </span>
+              </a>
             </p>
 
             {/* Social Media Icons */}

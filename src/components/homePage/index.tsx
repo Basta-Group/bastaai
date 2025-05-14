@@ -6,8 +6,8 @@ import certifyImg1 from "../../assets/certify-img-1.png";
 import certifyImg2 from "../../assets/certify-img-2.png";
 import certifyImg3 from "../../assets/certify-img-3.png";
 import worldMapDotted from "../../assets/world-map-dotted.png";
-import gridIcon1 from "../../assets/grid-icon-1.png";
-import gridIcon2 from "../../assets/grid-icon-2.png";
+// import gridIcon1 from "../../assets/grid-icon-1.png";
+// import gridIcon2 from "../../assets/grid-icon-2.png";
 import gridIcon3 from "../../assets/grid-icon-3.png";
 import gridIcon4 from "../../assets/grid-icon-4.png";
 import gridIcon5 from "../../assets/grid-icon-5.png";
@@ -93,23 +93,23 @@ const Home: React.FC = () => {
   };
 
   const trustCardsData = [
-    {
-      icon: (
-        <img src={gridIcon1} alt="ISO Certification" className="w-12 h-16 " />
-      ),
-      title: "ISO/IEC 17025 & 27001 Certified",
-      bgColor: "bg-[#6b9ef4]",
-    },
-    {
-      icon: (
-        <img
-          src={gridIcon2}
-          alt="Regulator Recognition"
-          className="w-12 h-12"
-        />
-      ),
-      title: "Recognized by NGA, UKGC, Ontario, and more",
-    },
+    // {
+    //   icon: (
+    //     <img src={gridIcon1} alt="ISO Certification" className="w-12 h-16 " />
+    //   ),
+    //   title: "ISO/IEC 17025 & 27001 Certified",
+    //   bgColor: "bg-[#6b9ef4]",
+    // },
+    // {
+    //   icon: (
+    //     <img
+    //       src={gridIcon2}
+    //       alt="Regulator Recognition"
+    //       className="w-12 h-12"
+    //     />
+    //   ),
+    //   title: "Recognized by NGA, UKGC, Ontario, and more",
+    // },
     {
       icon: <img src={gridIcon3} alt="Remote Testing" className="w-12 h-12" />,
       title: "All testing is fully remote and digital",
@@ -149,8 +149,7 @@ const Home: React.FC = () => {
                 Slot Games, iOS Platforms, MGA Ready, UKGC Compliant, Proven RTF
               </p>
               <p className="text-lg font-bold mb-8">
-                Be the first to certify your games with our ISO/IEC
-                17025-accredited lab.
+                Be the first to certify your games.
               </p>
               <button
                 className="bg-[#3147C3] text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition-colors"
@@ -236,7 +235,7 @@ const Home: React.FC = () => {
                   {
                     step: "1",
                     title: "1. Register",
-                    desc: "Create your account on NGLCert.com and access your dashboard.",
+                    desc: "Create your account on nglcert.com and access your dashboard.",
                   },
                   {
                     step: "2",
