@@ -1,32 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import nglLogo from "../../assets/ngl-logo.png";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const aboutUsRef = useRef<HTMLElement | null>(null);
-  const contactUsRef = useRef<HTMLElement | null>(null);
-  const portalRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    // Initialize refs after component mounts
-    aboutUsRef.current = document.getElementById("about-us");
-    contactUsRef.current = document.getElementById("contact-us");
-    portalRef.current = document.getElementById("contact-form");
-  }, []);
-
-  const scrollToSection = (ref: React.RefObject<HTMLElement | null>) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    ref: React.RefObject<HTMLElement | null>
-  ) => {
-    e.preventDefault();
-    scrollToSection(ref);
-  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -81,29 +57,26 @@ export default function Navbar() {
                 HOME
               </a>
               <a
-                href="#about-us"
+                href="/about"
                 className="font-medium hover:text-gray-200"
                 role="menuitem"
                 aria-label="About us page"
-                onClick={(e) => handleNavClick(e, aboutUsRef)}
               >
                 ABOUT US
               </a>
               <a
-                href="#contact-us"
+                href="/contact"
                 className="font-medium hover:text-gray-200"
                 role="menuitem"
                 aria-label="Contact page"
-                onClick={(e) => handleNavClick(e, contactUsRef)}
               >
                 CONTACT
               </a>
               <a
-                href="#contact-form"
+                href="/portal"
                 className="font-medium hover:text-gray-200"
                 role="menuitem"
                 aria-label="Portal page"
-                onClick={(e) => handleNavClick(e, portalRef)}
               >
                 PORTAL
               </a>
