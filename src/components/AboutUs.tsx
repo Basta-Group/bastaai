@@ -1,16 +1,20 @@
 import React from "react";
 import certificationImage from "../assets/laptop-working.png";
-import certifyImg1 from "../assets/certify-img-1.png";
-import certifyImg2 from "../assets/certify-img-2.png";
-import certifyImg3 from "../assets/certify-img-3.png";
+import certifyImg1 from "../assets/grid-1.png";
+import certifyImg2 from "../assets/grid-2.png";
+import certifyImg3 from "../assets/grid-3.png";
+import certify1 from "../assets/cert-1.png";
+import certify2 from "../assets/cert-2.png";
+import certify3 from "../assets/cert-3.png";
+import certify4 from "../assets/cert-4.png";
 
 const AboutUs: React.FC = () => (
   <div className="pt-8 md:pt-16">
     <section className="bg-white py-8 md:py-12 md:min-h-[80vh] ">
-      <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:px-8 rounded-lg shadow-xl">
-        <div className="grid md:grid-cols-2 gap-10 items-center bg-white rounded-xl md:p-8">
+      <div className="max-w-7xl mx-auto  rounded-lg ">
+        <div className="grid md:grid-cols-2 gap-10 items-center bg-white rounded-xl p-4 sm:p-6 lg:p-8 shadow-xl">
           {/* Left Text Section */}
-          <div>
+          <div className="order-2 md:order-1">
             <h2 className="text-2xl md:text-5xl font-bold text-black mb-6 leading-tight tracking-wide">
               CERTIFICATION <br /> MADE SIMPLE
             </h2>
@@ -20,7 +24,7 @@ const AboutUs: React.FC = () => (
             </p>
             <p className="text-black opacity-60 mb-3">
               Our expertise uniquely equips us to lighten your load in ways
-              other test labs simply can’t.
+              other test labs simply can't.
             </p>
             <p className="text-black opacity-60 mb-3">
               Our committed team simplifies the certification journey, making
@@ -34,11 +38,11 @@ const AboutUs: React.FC = () => (
           </div>
 
           {/* Right Image Section */}
-          <div className="flex justify-center">
+          <div className="flex justify-center order-1 md:order-2">
             <img
               src={certificationImage}
               alt="Certification"
-              className="rounded-lg shadow-lg max-w-full h-auto"
+              className="rounded-lg shadow-lg max-w-full max-h-[440px] object-contain"
             />
           </div>
         </div>
@@ -120,7 +124,7 @@ const AboutUs: React.FC = () => (
             immense pride in our diverse set of certifications and
             accreditations.
           </p>
-          <p className="text-center text-black opacity-60 mb-3 mb-10">
+          <p className="text-center text-black opacity-60 mb-10">
             We're always broadening our capabilities and acquiring additional
             recognitions. Stay tuned for updates on our expanding expertise.
           </p>
@@ -132,39 +136,44 @@ const AboutUs: React.FC = () => (
               label: "ISO/IEC",
               title: "17020",
               issuedBy: "NAB - MALTA",
-              image: certifyImg1,
+              image: certify1,
             },
             {
               label: "ISO/IEC",
               title: "17025",
               issuedBy: "NAB - MALTA",
-              image: certifyImg1,
+              image: certify2,
             },
             {
               label: "ISO/IEC",
               title: "27001:2022",
               issuedBy: "SGS",
-              image: certifyImg1,
+              image: certify3,
             },
             {
               label: "ISO",
               title: "9001:2015",
               issuedBy: "SGS",
-              image: certifyImg1,
+              image: certify4,
             },
           ].map((cert, index) => (
             <div
               key={index}
-              className="bg-[#669DF6] blur-[5px] rounded-xl text-white p-6 flex flex-col justify-between items-center text-center h-full"
+              className="bg-[#669DF6] blur-[5px] rounded-2xl text-white p-8 flex flex-col justify-between items-center text-center h-full shadow-lg"
             >
-              <div>
-                <span className="text-sm font-semibold bg-[#7FAFF8] px-3 py-1 rounded-md mb-2 inline-block">
+              {/* Top label, left-aligned */}
+              <div className="w-full flex justify-start">
+                <span className="text-sm font-semibold bg-[#7FAFF8] px-4 py-1 rounded-md mb-4">
                   {cert.label}
                 </span>
-                <h3 className="text-3xl font-bold mt-2 mb-4">{cert.title}</h3>
               </div>
-              <div className="mt-auto">
-                <p className="text-xs mb-2">ISSUED BY</p>
+              {/* Main ISO number */}
+              <h3 className="text-4xl font-bold mb-8 mt-2">{cert.title}</h3>
+              {/* Spacer */}
+              <div className="flex-grow" />
+              {/* Issued by and logo */}
+              <div className="w-full flex flex-col items-center mt-8">
+                <p className="text-xs mb-2 tracking-widest">ISSUED BY</p>
                 <img
                   src={cert.image}
                   alt={cert.issuedBy}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import nglLogo from "../../assets/ngl-logo.png";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,15 +33,17 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <div className="flex items-center">
               <div className="h-[100px] w-[115px] relative">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <img
-                    src={nglLogo}
-                    alt="NGL Logo"
-                    className="h-full w-full object-cover"
-                    role="img"
-                    aria-label="NGL Certification Logo"
-                  />
-                </div>
+                <NavLink to="/" className="block h-full w-full">
+                  <div className="absolute inset-0 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity">
+                    <img
+                      src={nglLogo}
+                      alt="NGL Logo"
+                      className="h-full w-full object-cover"
+                      role="img"
+                      aria-label="NGL Certification Logo"
+                    />
+                  </div>
+                </NavLink>
               </div>
             </div>
           </div>
@@ -193,7 +196,7 @@ export default function Navbar() {
               HOME
             </a>
             <a
-              href="#about-us"
+              href="/about"
               className="text-white hover:text-gray-200 text-lg font-medium"
               role="menuitem"
               aria-label="About us page"
@@ -206,7 +209,7 @@ export default function Navbar() {
               ABOUT US
             </a>
             <a
-              href="#contact-us"
+              href="/contact"
               className="text-white hover:text-gray-200 text-lg font-medium"
               role="menuitem"
               aria-label="Contact page"

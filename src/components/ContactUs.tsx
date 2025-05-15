@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import worldMapDotted from "../assets/world-map-dotted.png";
+import callPhone from "../assets/callPhone-icon.png";
+import locationIcon from "../assets/loc-icon-2.png";
+import socialIcon from "../assets/social-media-1.png";
 
 const ContactUs: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -27,13 +30,29 @@ const ContactUs: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus({ submitting: true, success: false, message: "" });
-    // Simulate form submission
-    setTimeout(() => {
+
+    try {
+      const response = await fetch("http://localhost:3001/send-contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      const data = await response.json();
+
       setFormStatus({
         submitting: false,
         success: true,
-        message: "Message sent successfully!",
+        message: data.message || "Message sent successfully!",
       });
+
+      // Reset form
       setFormData({
         email: "",
         company: "",
@@ -43,7 +62,14 @@ const ContactUs: React.FC = () => {
         enquiry: "",
         message: "",
       });
-    }, 1200);
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setFormStatus({
+        submitting: false,
+        success: false,
+        message: "There was an error sending your message. Please try again.",
+      });
+    }
   };
 
   return (
@@ -158,16 +184,12 @@ const ContactUs: React.FC = () => {
               </h2>
               <div className="mb-6 space-y-4">
                 <div className="flex items-center gap-4">
-                  <span className="bg-[#a3c2f8] p-3 rounded-full">
-                    <svg
-                      width="24"
-                      height="24"
-                      fill="white"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M22 16.92V19a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 0 1-.45 2.11l-.27.27a16 16 0 0 0 6.29 6.29l.27-.27a2 2 0 0 1 2.11-.45c.99.35 2.01.59 3.06.72A2 2 0 0 1 22 16.92z" />
-                    </svg>
-                  </span>
+                  <img
+                    src={callPhone}
+                    alt="Location"
+                    className="w-10 h-10"
+                    aria-hidden="true"
+                  />
                   <div>
                     <span className="font-bold">Email:</span>
                     <br />
@@ -175,18 +197,12 @@ const ContactUs: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="bg-[#a3c2f8] p-3 rounded-full">
-                    <svg
-                      width="24"
-                      height="24"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M21 10.5a8.38 8.38 0 0 1-1.9 5.4c-1.5 2-4.1 4.6-7.1 7.1-3-2.5-5.6-5.1-7.1-7.1A8.38 8.38 0 0 1 3 10.5a8.5 8.5 0 0 1 17 0z" />
-                    </svg>
-                  </span>
+                  <img
+                    src={locationIcon}
+                    alt="Location"
+                    className="w-10 h-10"
+                    aria-hidden="true"
+                  />
                   <div>
                     <span className="font-bold">Offices:</span>
                     <br />
@@ -194,22 +210,16 @@ const ContactUs: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="bg-[#a3c2f8] p-3 rounded-full">
-                    <svg
-                      width="24"
-                      height="24"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M3 12a9 9 0 1 0 18 0A9 9 0 0 0 3 12zm7-2v4l3 2" />
-                    </svg>
-                  </span>
+                  <img
+                    src={socialIcon}
+                    alt="Social Media"
+                    className="w-10 h-10"
+                    aria-hidden="true"
+                  />
                   <div>
                     <span className="font-bold">Social Media</span>
                     <br />
-                    <div className="flex space-x-3">
+                    <div className="flex space-x-3 pt-1">
                       {/* Facebook */}
                       <a
                         href="#"
@@ -289,7 +299,7 @@ const ContactUs: React.FC = () => {
                           fill="currentColor"
                           viewBox="0 0 24 24"
                         >
-                          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.6l5.57-5.16z" />
+                          <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" />
                         </svg>
                       </a>
                     </div>

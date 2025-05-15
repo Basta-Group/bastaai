@@ -1,13 +1,14 @@
 import React from "react";
-import certificationImage from "../assets/laptop-working.png";
+import { Link } from "react-router-dom";
+import certificationImage from "../assets/portal-img.png";
 
 const Portal: React.FC = () => (
   <div className="pt-8 md:pt-16 md:p-8">
     <section className="bg-white py-8 md:py-12 md:min-h-[80vh]">
-      <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:px-8 rounded-lg shadow-xl">
-        <div className="grid md:grid-cols-2 gap-10 items-center bg-white rounded-xl md:p-8">
+      <div className="max-w-7xl mx-auto  rounded-lg shadow-xl">
+        <div className="grid md:grid-cols-2 gap-10 items-center bg-white rounded-xl p-4 sm:p-6 lg:p-8 ">
           {/* Left Text Section */}
-          <div>
+          <div className="order-2 md:order-1">
             <h2 className="text-3xl md:text-5xl font-bold text-black mb-6 leading-tight tracking-wide">
               CLIENT PORTAL
             </h2>
@@ -25,9 +26,12 @@ const Portal: React.FC = () => (
             </p>
             <p className="text-black opacity-80 mb-4">
               Want access?{" "}
-              <a href="#" className="underline text-blue-600 font-medium">
+              <Link
+                to="/contact"
+                className="underline text-blue-600 font-medium"
+              >
                 Message our Team
-              </a>{" "}
+              </Link>{" "}
               today to arrange a demo!
             </p>
             <p className="text-black opacity-80 mb-2">Already a Client?</p>
@@ -40,11 +44,11 @@ const Portal: React.FC = () => (
           </div>
 
           {/* Right Image Section */}
-          <div className="flex justify-center">
+          <div className="flex justify-center order-1 md:order-2">
             <img
               src={certificationImage}
               alt="Client Portal"
-              className="rounded-lg shadow-lg max-w-full h-auto"
+              className="rounded-lg shadow-lg max-w-full max-h-[440px] object-contain"
             />
           </div>
         </div>
