@@ -62,7 +62,7 @@ const TestimonialsSlider: React.FC = () => {
 
   return (
     <div
-      className="pb-2 px-0 relative"
+      className="pb-2 px-0 relative max-w-[100vw]"
       role="region"
       aria-label="Customer testimonials"
     >

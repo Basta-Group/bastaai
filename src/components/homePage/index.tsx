@@ -16,8 +16,11 @@ import registerIcon from "../../assets/register.png";
 import uploadIcon from "../../assets/upload.png";
 import testIcon from "../../assets/test.png";
 import verifiedIcon from "../../assets/verified.png";
+import { useScrollToTop } from "../../utils/useScrollToTop";
 
 const Home: React.FC = () => {
+  useScrollToTop();
+
   const [formData, setFormData] = useState({
     companyName: "",
     fullName: "",
@@ -316,7 +319,7 @@ const Home: React.FC = () => {
       {/* Pricing Section */}
       <section className="py-12 md:py-16 bg-[#F4F5F5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-12">
+          <div className="flex flex-col lg:flex-row gap-12 items-center ">
             {/* Left Side - 30% */}
             <div className="w-full lg:w-[30%]">
               <h2 className="text-2xl md:text-5xl md:text-2xl md:text-5xl font-bold text-black mb-6 leading-tight tracking-wide">
@@ -332,17 +335,32 @@ const Home: React.FC = () => {
             {/* Right Side - 70% with 3 boxes in one row */}
             <div className="w-full lg:w-[70%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { title: "RGS CERTIFICATION", price: "€7,500" },
-                { title: "ADDITIONAL JURISDICTION", price: "+€2,000" },
                 {
-                  title: "SLOT GAME TESTING (1–10 GAMES)",
-                  price: "€1,500 / game",
+                  title: "RGS Certification (Full RNG Evaluation)",
+                  price: "$4,544",
                 },
-                { title: "BULK TESTING (11–50 GAMES)", price: "€1,200 / game" },
-                { title: "RE-CERTIFICATION", price: "€500" },
                 {
-                  title: "FAST-TRACK (5 BUSINESS DAYS)",
-                  price: "+€500 / game",
+                  title: "Slot Game Testing (1–10 games)",
+                  price: "$3,976 per game",
+                },
+                {
+                  title: "Bulk Testing (11–50 games)",
+                  price: "$3,976 per game",
+                },
+                { title: "Card Game Testing", price: "$3,408 per game" },
+                {
+                  title: "Technical Report + QA Review",
+                  price: "$2,130 per unit",
+                },
+                {
+                  title: "Project Management & Administration",
+                  price: "$12,126.80 per project",
+                },
+                { title: "Re-Certification", price: "$1,600" },
+                { title: "Additional Jurisdiction", price: "$2,000" },
+                {
+                  title: "Fast-Track (5 business days)",
+                  price: "$2,000 per game",
                 },
               ].map((item, i) => (
                 <div
