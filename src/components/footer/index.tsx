@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import nglLogo from "../../assets/ngl-logo.png";
 
 export default function Footer() {
@@ -42,13 +43,13 @@ export default function Footer() {
 
             {/* Navigation Links */}
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 md:space-x-12">
-              <a
-                href="#"
+              <Link
+                to="/about"
                 className="text-sm text-black opacity-60 font-semibold hover:text-blue-600"
               >
                 {" "}
                 About
-              </a>
+              </Link>
               <a
                 href="#"
                 className="text-sm text-black opacity-60 font-semibold hover:text-blue-600"
