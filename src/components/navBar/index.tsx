@@ -51,38 +51,38 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:justify-center md:flex-1">
             <div className="flex items-center space-x-12" role="menubar">
-              <a
-                href="/"
+              <NavLink
+                to="/"
                 className="font-medium hover:text-gray-200"
                 role="menuitem"
                 aria-label="Home page"
               >
                 HOME
-              </a>
-              <a
-                href="/about"
+              </NavLink>
+              <NavLink
+                to="/about"
                 className="font-medium hover:text-gray-200"
                 role="menuitem"
                 aria-label="About us page"
               >
                 ABOUT US
-              </a>
-              <a
-                href="/contact"
+              </NavLink>
+              <NavLink
+                to="/contact"
                 className="font-medium hover:text-gray-200"
                 role="menuitem"
                 aria-label="Contact page"
               >
                 CONTACT
-              </a>
-              <a
-                href="/portal"
+              </NavLink>
+              <NavLink
+                to="/portal"
                 className="font-medium hover:text-gray-200"
                 role="menuitem"
                 aria-label="Portal page"
               >
                 PORTAL
-              </a>
+              </NavLink>
             </div>
           </div>
 
@@ -97,11 +97,6 @@ export default function Navbar() {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  setIsMenuOpen(!isMenuOpen);
-                }
-              }}
             >
               <span className="sr-only">
                 {isMenuOpen ? "Close menu" : "Open menu"}
@@ -159,11 +154,6 @@ export default function Navbar() {
               onClick={toggleMenu}
               className="text-white hover:text-gray-200"
               aria-label="Close menu"
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  toggleMenu();
-                }
-              }}
             >
               <svg
                 className="h-6 w-6"
@@ -182,58 +172,42 @@ export default function Navbar() {
             </button>
           </div>
           <div className="flex flex-col space-y-4 px-4" role="menubar">
-            <a
-              href="/"
+            <NavLink
+              to="/"
               className="text-white hover:text-gray-200 text-lg font-medium"
               role="menuitem"
               aria-label="Home page"
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  // Add navigation logic here
-                }
-              }}
+              onClick={toggleMenu}
             >
               HOME
-            </a>
-            <a
-              href="/about"
+            </NavLink>
+            <NavLink
+              to="/about"
               className="text-white hover:text-gray-200 text-lg font-medium"
               role="menuitem"
               aria-label="About us page"
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  // Add navigation logic here
-                }
-              }}
+              onClick={toggleMenu}
             >
               ABOUT US
-            </a>
-            <a
-              href="/contact"
+            </NavLink>
+            <NavLink
+              to="/contact"
               className="text-white hover:text-gray-200 text-lg font-medium"
               role="menuitem"
               aria-label="Contact page"
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  // Add navigation logic here
-                }
-              }}
+              onClick={toggleMenu}
             >
               CONTACT
-            </a>
-            <a
-              href="/portal"
+            </NavLink>
+            <NavLink
+              to="/portal"
               className="text-white hover:text-gray-200 text-lg font-medium"
               role="menuitem"
               aria-label="Portal page"
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  // Add navigation logic here
-                }
-              }}
+              onClick={toggleMenu}
             >
               PORTAL
-            </a>
+            </NavLink>
           </div>
         </div>
       </div>

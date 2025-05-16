@@ -182,7 +182,7 @@ const ContactUs: React.FC = () => {
               <h2 className="text-2xl md:text-5xl  font-bold text-black mb-8 leading-tight tracking-wide">
                 CONTACT NGL
               </h2>
-              <div className="mb-6 space-y-4">
+              <div className="mb-6 space-y-8">
                 <div className="flex items-center gap-4">
                   <img
                     src={callPhone}
@@ -193,7 +193,9 @@ const ContactUs: React.FC = () => {
                   <div>
                     <span className="font-bold">Email:</span>
                     <br />
-                    <span>info@nglcert.com</span>
+                    <a href="mailto:contact@nglcert.com" className="">
+                      contact@nglcert.com
+                    </a>{" "}
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
