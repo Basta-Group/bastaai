@@ -1,15 +1,28 @@
 import { useState, useEffect } from "react";
-import nglLogo from "../../assets/ngl-logo.png";
+import aiLogo from "../../assets/basta-ai-logo.png";
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Prevent body scrolling when menu is open
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -23,7 +36,9 @@ export default function Navbar() {
 
   return (
     <nav
-      className="bg-[#3147C3] text-white fixed w-full z-50"
+      className={`fixed p-2 w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-[#000]/40 backdrop-blur-md" : "bg-transparent"
+      }`}
       role="navigation"
       aria-label="Main navigation"
     >
@@ -31,65 +46,73 @@ export default function Navbar() {
         <div className="relative flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <div className="flex items-center">
-              <div className="h-[100px] w-[115px] relative">
-                <NavLink to="/" className="block h-full w-full">
-                  <div className="absolute inset-0 flex items-center justify-center cursor-pointer hover:opacity-90 transition-opacity">
-                    <img
-                      src={nglLogo}
-                      alt="NGL Logo"
-                      className="h-full w-full object-cover"
-                      role="img"
-                      aria-label="NGL Certification Logo"
-                    />
-                  </div>
-                </NavLink>
-              </div>
-            </div>
+            <NavLink to="/" className="block">
+              <img
+                src={aiLogo}
+                alt="BastaAI Logo"
+                title="BastaAI Logo"
+                className="h-8 w-auto object-contain"
+                role="img"
+                aria-label="BastaAI Logo"
+              />
+            </NavLink>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:justify-center md:flex-1">
-            <div className="flex items-center space-x-12" role="menubar">
-              <NavLink
-                to="/"
-                className="font-medium hover:text-gray-200"
-                role="menuitem"
-                aria-label="Home page"
-              >
-                HOME
-              </NavLink>
-              <NavLink
-                to="/about"
-                className="font-medium hover:text-gray-200"
-                role="menuitem"
-                aria-label="About us page"
-              >
-                ABOUT US
-              </NavLink>
-              <NavLink
-                to="/contact"
-                className="font-medium hover:text-gray-200"
-                role="menuitem"
-                aria-label="Contact page"
-              >
-                CONTACT
-              </NavLink>
-              <NavLink
-                to="/portal"
-                className="font-medium hover:text-gray-200"
-                role="menuitem"
-                aria-label="Portal page"
-              >
-                PORTAL
-              </NavLink>
+          <div className="hidden md:flex md:items-center md:justify-between md:flex-1 md:mx-5 lg:mx-20">
+            <div
+              className="text-white hover:text-gray-300 text-base font-medium cursor-pointer"
+              role="menuitem"
+              aria-label="Home page"
+            >
+              Home
+            </div>
+            <div
+              className="text-white hover:text-gray-300 text-base font-medium cursor-pointer"
+              role="menuitem"
+              aria-label="About us page"
+            >
+              About Us
+            </div>
+            <div
+              className="text-white hover:text-gray-300 text-base font-medium cursor-pointer"
+              role="menuitem"
+              aria-label="News and Media page"
+            >
+              News & Media
+            </div>
+            <div
+              className="text-white hover:text-gray-300 text-base font-medium cursor-pointer"
+              role="menuitem"
+              aria-label="Careers page"
+            >
+              Careers
+            </div>
+            <div
+              className="text-white hover:text-gray-300 text-base font-medium cursor-pointer"
+              role="menuitem"
+              aria-label="Contact us page"
+            >
+              Contact Us
+            </div>
+          </div>
+
+          {/* Button on the right */}
+          <div className="hidden md:flex">
+            <div
+              className="bg-gradient-to-r from-[#006EFF] to-[#00BFFF] text-white px-4 py-3 rounded-lg text-sm font-medium cursor-pointer uppercase"
+              role="menuitem"
+              title="Investor Deck"
+              aria-label="Investor Deck page"
+            >
+              Investor Deck
             </div>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={toggleMenu}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               title={
                 isMenuOpen ? "Close navigation menu" : "Open navigation menu"
@@ -120,7 +143,7 @@ export default function Navbar() {
               ) : (
                 <svg
                   className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns="http://w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -141,7 +164,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`fixed inset-y-0 right-0 w-64 bg-blue-600 transform transition-transform duration-300 ease-in-out z-50 ${
+        className={`fixed inset-y-0 right-0 w-64 bg-[#1A1A2E] transform transition-transform duration-300 ease-in-out z-50 ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
         id="mobile-menu"
@@ -152,12 +175,12 @@ export default function Navbar() {
           <div className="flex justify-end p-4">
             <button
               onClick={toggleMenu}
-              className="text-white hover:text-gray-200"
+              className="text-white hover:text-gray-300"
               aria-label="Close menu"
             >
               <svg
                 className="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
+                xmlns="http://w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -172,42 +195,54 @@ export default function Navbar() {
             </button>
           </div>
           <div className="flex flex-col space-y-4 px-4" role="menubar">
-            <NavLink
-              to="/"
-              className="text-white hover:text-gray-200 text-lg font-medium"
+            <div
+              className="text-white hover:text-gray-300 text-lg font-medium cursor-pointer"
               role="menuitem"
               aria-label="Home page"
               onClick={toggleMenu}
             >
-              HOME
-            </NavLink>
-            <NavLink
-              to="/about"
-              className="text-white hover:text-gray-200 text-lg font-medium"
+              Home
+            </div>
+            <div
+              className="text-white hover:text-gray-300 text-lg font-medium cursor-pointer"
               role="menuitem"
               aria-label="About us page"
               onClick={toggleMenu}
             >
-              ABOUT US
-            </NavLink>
-            <NavLink
-              to="/contact"
-              className="text-white hover:text-gray-200 text-lg font-medium"
+              About Us
+            </div>
+            <div
+              className="text-white hover:text-gray-300 text-lg font-medium cursor-pointer"
               role="menuitem"
-              aria-label="Contact page"
+              aria-label="News and Media page"
               onClick={toggleMenu}
             >
-              CONTACT
-            </NavLink>
-            <NavLink
-              to="/portal"
-              className="text-white hover:text-gray-200 text-lg font-medium"
+              News & Media
+            </div>
+            <div
+              className="text-white hover:text-gray-300 text-lg font-medium cursor-pointer"
               role="menuitem"
-              aria-label="Portal page"
+              aria-label="Careers page"
               onClick={toggleMenu}
             >
-              PORTAL
-            </NavLink>
+              Careers
+            </div>
+            <div
+              className="text-white hover:text-gray-300 text-lg font-medium cursor-pointer"
+              role="menuitem"
+              aria-label="Contact us page"
+              onClick={toggleMenu}
+            >
+              Contact Us
+            </div>
+            <div
+              className="text-white hover:text-gray-300 text-lg font-medium cursor-pointer"
+              role="menuitem"
+              aria-label="Investor Deck page"
+              onClick={toggleMenu}
+            >
+              Investor Deck
+            </div>
           </div>
         </div>
       </div>
@@ -215,7 +250,7 @@ export default function Navbar() {
       {/* Overlay */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 backdrop-blur-sm bg-white/30 z-40"
+          className="fixed inset-0 backdrop-blur-sm bg-black/50 z-40"
           onClick={toggleMenu}
         />
       )}

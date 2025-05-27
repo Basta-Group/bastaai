@@ -1,7 +1,7 @@
 {
-  "name": "ngl-server",
+  "name": "basta-ai-server",
   "version": "1.0.0",
-  "description": "Server for NGL contact form",
+  "description": "Server for basta-ai contact form",
   "type": "module",
   "main": "server.js",
   "scripts": {
