@@ -32,16 +32,49 @@ const Home: React.FC = () => {
       error: false,
       message: "",
     });
-    // Simulate API call
-    setTimeout(() => {
+
+    try {
+      const response = await fetch("/api/send-contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          firstName: formData.name,
+          message: formData.message,
+          company: "",
+          location: "",
+          lastName: "",
+          enquiry: "Consultation",
+        }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (data.success) {
+        setFormStatus({
+          submitting: false,
+          success: true,
+          error: false,
+          message: "Thank you! We'll be in touch soon.",
+        });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error(data.message || "Failed to send message");
+      }
+    } catch (error) {
       setFormStatus({
         submitting: false,
-        success: true,
-        error: false,
-        message: "Thank you! We'll be in touch soon.",
+        success: false,
+        error: true,
+        message:
+          error instanceof Error
+            ? error.message
+            : "Failed to send message. Please try again.",
       });
-      setFormData({ name: "", email: "", message: "" });
-    }, 1200);
+    }
   };
 
   return (
@@ -67,7 +100,7 @@ const Home: React.FC = () => {
             Here
           </h1>
           <div className="text-xl md:text-2xl text-white mb-6 font-medium">
-            Launching September 2025
+            Launching September 2026
           </div>
           <button
             className="mt-2 px-8 py-3 rounded-xl bg-gradient-to-r from-[#009FFF] to-[#00BFFF] text-white font-bold text-sm shadow-lg hover:opacity-90 transition"
