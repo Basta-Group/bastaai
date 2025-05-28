@@ -40,7 +40,7 @@ app.post('/send-email', async (req, res) => {
     }
     const msg = {
       to: email, // Dynamic recipient email from form data
-      from: 'contact@nglcert.com', // This must be a verified sender
+      from: 'contact@bastaai.com', // This must be a verified sender
       subject: 'New Waitlist Registration',
       text: `
         Company Name: ${companyName}
@@ -103,7 +103,7 @@ app.post('/send-contact', async (req, res) => {
 
     const msg = {
       to: email,
-      from: 'contact@nglcert.com',
+      from: 'contact@bastaai.com',
       subject: 'New Contact Form Submission',
       text: `
         Email: ${email}
